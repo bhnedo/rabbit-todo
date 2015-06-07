@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todo">
+<head>
+    <meta charset="utf-8">
+    <title>Rabbit Todo</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="public/bower_components/ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="public/css/refills.css" />
+    <link rel="stylesheet" href="public/css/bitters.css" />
+    <link rel="stylesheet" href="public/css/main.css" />
+
+    <base href="rabbit-todo" />
+
+</head>
+    <body ng-controller="TodoController">
+
+       <div class="modal">
+
+           <label for="modal-create-todo">
+               <div class="modal-trigger">ADD NEW TODO</div>
+           </label>
+           <input class="modal-state modal-popup" id="modal-create-todo" type="checkbox" />
+
+           <div class="modal-fade-screen">
+               <div class="modal-inner">
+                   <div class="modal-close" for="modal-create-todo"></div>
+                   <h1>CREATE TODO</h1>
+                   <form ng-submit="createTodo(name, description)">
+                       <label for="name">Name</label>
+                       <input type="text" id="name" ng-model="name">
+                       <label for="description">Description</label>
+                       <textarea id="description" ng-model="description"></textarea>
+
+                       <h1>Tasks</h1>
+
+                       <input type="text" id="new-todo" placeholder="Add new todo task"
+                                    ng-model="newTask" ng-enter="addNewTask(newTask)" autofocus>
+
+                       <section id="main" ng-show="newTasks.length" ng-cloak>
+                            <ul id="todo-list">
+                                <li ng-repeat="task in newTasks track by $index">
+                                    <div class="view">
+
+                                        <label>{{task.title}}</label>
+                                        <i class="icon ion-close-circled destroy" ng-click="removeNewTask($index)"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                       </section>
+
+                       <input type="submit" value="CREATE" ng-popup-close>
+                   </form>
+               </div>
+           </div>
+       </div>
+
+
+       <div class="flex-boxes">
+            <div class="flex-box" ng-repeat="todo in todos">
+
+                <div class="delete"><i ng-click="deleteTodo(todo.id)" class="icon ion-close-circled"></i></div>
+                <h1 class="flex-title uppercase">{{todo.name}}</h1>
+
+                <p class="todo-description">{{todo.description}}</p>
+
+
+                <div class="comment" ng-repeat="task in todo.tasks">
+                    <div class="comment-image">
+                        <i class="icon ion-pin"></i>
+                    </div>
+                    <div class="comment-content">
+                        <h1 ng-class="{done : task.done}">{{task.title}} <i ng-class="{done : task.done}" ng-click="setTaskDone(todo.id, task.id)" class="icon ion-checkmark-circled done-icon"></i></h1>
+                        <div ng-class="{done : task.done}" class="comment-detail">
+                            <div class="modal">
+
+                                <label for="modal-update-task-prior{{task.id}}">
+                                    <div>
+                                        <p  ng-switch="task.priority">
+                                            <span ng-switch-when="HIGH" class="badge-error">{{task.priority}}</span>
+                                            <span ng-switch-when="MEDIUM"  class="badge-alert">{{task.priority}}</span>
+                                            <span ng-switch-when="LOW"  class="badge-success">{{task.priority}}</span>
+                                        </p>
+                                    </div>
+                                </label>
+                                <input class="modal-state modal-popup" id="modal-update-task-prior{{task.id}}" type="checkbox" />
+
+
+                                <div class="modal-fade-screen">
+                                    <div class="modal-inner">
+                                        <h1>CHANGE TASK PRIORITY</h1>
+                                        <form ng-submit="changeTaskPriority(todo.id, task.id, selectedPriority)">
+                                            <select ng-model="selectedPriority" ng-options="prior as prior for prior in ['HIGH', 'MEDIUM', 'LOW']"></select>
+                                            <input type="submit" value="UPDATE" ng-popup-close>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    <script src="public/bower_components/angular/angular.js"></script>
+    <script src="public/bower_components/angular-route/angular-route.js"></script>
+    <script src="public/bower_components/underscore/underscore-min.js"></script>
+    <script src="public/bower_components/angular-underscore/angular-underscore.js"></script>
+
+
+    <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="public/bower_components/stomp-websocket/lib/stomp.js"></script>
+    <script src="public/bower_components/sockjs/sockjs.js"></script>
+    <script src="public/bower_components/gsap/src/minified/TweenMax.min.js"></script>
+    <script src="public/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="public/bower_components/ngFx/dist/ngFx.js"></script>
+
+    <script src="public/app/app.js"></script>
+    <script src="public/app/controllers/todo.js"></script>
+    <script src="public/app/services/todo.js"></script>
+
+
+    <script src="public/app/directives/enter.js"></script>
+    <script src="public/app/directives/popupClose.js"></script>
+
+    <script src="public/js/main.js"></script>
+
+
+    </body>
+</html>

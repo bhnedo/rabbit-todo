@@ -1,0 +1,18 @@
+{
+  "name": "rabbit-todo",
+  "private": true,
+  "dependencies": {
+    "angular" : "~1.3.8",
+    "angular-route" : "~1.3.8",
+    "angular-underscore" : "*",
+    "bourbon" : "~4.2.1",
+    "neat" : "~1.7.2",
+    "bitters" : "~1.0.0",
+    "ionicons" : "2.0.1",
+    "stomp-websocket" : "*",
+    "sockjs" : "*",
+    "jquery": "*",
+    "ngFx" : "*",
+    "underscore" : "1.8.3"
+  }
+}

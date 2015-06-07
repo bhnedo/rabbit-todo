@@ -1,0 +1,395 @@
+@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
+@import "../lib/refills-0.1.0/stylesheets/all";
+
+/**
+  Refills Flex Boxes
+**/
+
+.flex-boxes {
+  ///////////////////////////////////////////////////////////////////////////////////
+  $base-border-radius: 3px !default;
+  $base-background-color: white !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $base-font-color: $dark-gray !default;
+
+  a {
+    text-decoration: none;
+  }
+  //////////////////////////////////////////////////////////////////////////////////
+
+  $flex-box-border-color: $light-gray;
+  $flex-box-border: 1px solid $flex-box-border-color;
+  $flex-box-background: lighten($light-gray, 10%);
+  $flex-box-gutter: 0.4em;
+  $flex-box-width: 18em;
+  $flex-box-color: transparentize($base-font-color, 0.3);
+  $flex-box-top-colors:
+                      tomato,
+                      #72BFBF,
+                      #92B1E3,
+                      #E3D743,
+                      #CCC,
+                      #F6C05C,
+                      #72BFBF,
+                      #92B1E3,
+                      #E3D743,
+                      #CCC,
+                      #F6C05C,
+                      #72BFBF,
+                      #92B1E3,
+                      #E3D743,
+                      #CCC,
+                      #F6C05C,
+                      #72BFBF,
+                      #92B1E3,
+                      #E3D743,
+                      #CCC,
+                      #F6C05C
+                      tomato
+                      ;
+
+  @include clearfix;
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(stretch);
+  @include flex-wrap(wrap);
+  clear: both;
+  text-align: left;
+
+  .flex-box {
+    @include transition (all 0.2s ease-in-out);
+    @include flex(2 2 15em);
+    @include align-self(stretch);
+    background: $flex-box-background;
+    border-radius: $base-border-radius;
+    box-shadow: inset 0 0 1px $flex-box-border-color, 0 2px 4px darken($base-background-color, 10%);
+    display: block;
+    margin: $flex-box-gutter;
+    padding: 1em 2em 3em 2em;
+
+    @for $i from 1 to 7 {
+      &:nth-child(#{$i}) {
+        $color-from-list: nth($flex-box-top-colors, $i);
+        border-top: 6px solid $color-from-list;
+      }
+    }
+
+    img {
+      display: block;
+      height: 3em;
+      margin-bottom: 2em;
+      margin: auto;
+      opacity: 0.4;
+    }
+
+    .flex-title {
+      color: $flex-box-color;
+      font-size: 1.2em;
+      font-weight: 500;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      color: transparentize($flex-box-color, 0.1);
+      line-height: 1.5em;
+      margin: auto;
+      margin-bottom: 1.5em;
+    }
+
+    .delete i {
+       float: right;
+       color: tomato;
+       font-size: 20px;
+       cursor: pointer;
+    }
+  }
+
+  .flex-box-big {
+    @include flex(1 1 40em);
+  }
+}
+
+/**
+  Refills comments
+**/
+
+.comment {
+  ///////////////////////////////////////////////////////////////////////////////////
+  $base-border-radius: 3px !default;
+  $base-spacing: 1.5em !default;
+  $base-accent-color: #477DCA !default;
+  $dark-gray: #333 !default;
+  $base-font-color: $dark-gray !default;
+  //////////////////////////////////////////////////////////////////////////////////
+
+  $comment-gutter: 1.4em;
+  $comment-image-padding: 0.7em;
+  $comment-image-width: 4em;
+  $comment-color: $base-font-color;
+  $comment-background: lighten($base-accent-color, 15%);
+  $comment-detail-color: transparentize($comment-color, 0.5);
+  $comment-image-vert-alignment: top;
+
+  border-bottom: 1px solid transparentize($comment-color, 0.9);
+  display: table;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  width: 100%;
+
+  .comment-image,
+  .comment-content {
+    display: table-cell;
+    vertical-align: $comment-image-vert-alignment;
+  }
+
+
+  .task-done-btn {
+
+  }
+  .comment-image {
+    padding-right: $comment-gutter;
+
+    > i {
+      display: block;
+      height: auto;
+      font-size: 30px;
+      max-width: none;
+      color:  #CCC;
+
+    }
+
+    .comment-reverse-order & {
+      padding-right: 0;
+      padding-left: 10px;
+    }
+  }
+
+  .comment-content {
+    width: 100%;
+
+    h1 {
+      font-size: 0.9em;
+      margin: 0 0 0.5em 0;
+      color:  #6E6E6E;
+    }
+
+    p {
+      line-height: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .comment-detail {
+      color: $comment-detail-color;
+      font-size: 0.8em;
+    }
+
+  }
+}
+
+/**
+  Refills badges
+**/
+
+$badge-font-size: 0.75em !default;
+$medium-gray: #999 !default;
+$alert-color: #fff6bf !default;
+$error-color: #fbe3e4 !default;
+$notice-color: #e5edf8 !default;
+$success-color: #e6efc2 !default;
+
+@mixin badge($color: $medium-gray) {
+  background-color: $color;
+  border-radius: $badge-font-size * 5;
+  color: darken($color, 60%);
+  display: inline-block;
+  font-size: $badge-font-size;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.4em 1.2em;
+}
+
+.badge {
+  @include badge;
+}
+
+.badge-alert {
+  @include badge($alert-color);
+}
+
+.badge-error {
+  @include badge($error-color);
+}
+
+.badge-notice {
+  @include badge($notice-color);
+}
+
+.badge-success {
+  @include badge($success-color);
+}
+
+/**
+Refills modal
+**/
+.modal {
+  $base-border-color: gainsboro !default;
+  $base-border-radius: 3px !default;
+  $base-background-color: white !default;
+  $base-font-size: 1em !default;
+  $base-line-height: 1.5em !default;
+  $action-color: #477DCA !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $medium-screen: em(640) !default;
+  $large-screen: em(860) !default;
+  $base-font-color: $dark-gray !default;
+  $modal-padding: 3em;
+  $modal-background: $base-background-color;
+  $modal-close-color: $light-gray;
+  $modal-image-height: 135px;
+  $modal-image-width: $modal-image-height;
+  $modal-trigger-image-width: 300px;
+
+  label {
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  label img {
+    border-radius: $modal-trigger-image-width / 2;
+    display: block;
+    max-width: $modal-trigger-image-width;
+  }
+
+  .modal-state {
+    display: none;
+  }
+
+  .modal-trigger {
+    @include button(flat, $action-color);
+    padding: 0.8em 1em;
+    width: 23em;
+    text-align: center;
+  }
+
+  .modal-fade-screen { // overlay
+    @include transition(opacity 0.25s ease);
+    @include position(fixed, 0px 0px 0px 0px);
+    background: rgba(0,0,0, 0.85);
+    opacity: 0;
+    padding-top: 0.6em;
+    text-align: left;
+    visibility: hidden;
+    z-index: 99999999999;
+
+    @include media($large-screen) {
+      padding-top: 10em;
+    }
+
+    .modal-bg {
+      @include position(absolute, 0px 0px 0px 0px);
+      cursor: pointer;
+    }
+  }
+
+  .modal-close {
+    @include position(absolute, ($modal-padding /2) ($modal-padding /2) null null);
+    @include size(1.5em);
+    background: $modal-background;
+    cursor: pointer;
+
+    &:after,
+    &:before {
+      @include position(absolute, 3px 3px 0 50%);
+      @include transform(rotate(45deg));
+      @include size(0.15em 1.5em);
+      background: $modal-close-color;
+      content: '';
+      display: block;
+      margin: -3px 0 0 -1px;
+    }
+
+    &:hover:after,
+    &:hover:before {
+      background: darken($modal-close-color, 10%);
+    }
+
+    &:before {
+      @include transform(rotate(-45deg));
+    }
+  }
+
+  .modal-inner {
+    @include transition(opacity 0.25s ease);
+    background: $modal-background;
+    border-radius: $base-border-radius;
+    margin-top: 0;
+    margin: auto;
+    max-height: 95%;
+    overflow: auto;
+    padding: $modal-padding / 2;
+    position: relative;
+    width: 95%;
+
+    @include media($medium-screen) {
+      max-height: 70%;
+      padding: $modal-padding;
+      width: 60%;
+    }
+
+    @include media($large-screen) {
+      width: 50%;
+    }
+
+    h1 {
+      color: $base-font-color;
+      margin-bottom: 0 0 0.6em 0;
+      text-align: left;
+      text-transform: capitalize;
+    }
+
+    p {
+      color: $base-font-color;
+      line-height: $base-line-height;
+    }
+
+    .modal-intro {
+      font-weight: 800;
+    }
+
+    .modal-content {
+      color: $base-font-color;
+
+      @include media($medium-screen) {
+        @include columns(2 8em);
+      }
+    }
+
+    a.cta {
+      color: white;
+      display: inline-block;
+      margin-right: 0.5em;
+      margin-top: 1em;
+
+      &:last-child {
+        padding: 0 2em;
+      }
+    }
+  }
+
+  .modal-state:checked + .modal-fade-screen {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-state:checked + .modal-fade-screen .modal-inner {
+    top: 0.5em;
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}
+

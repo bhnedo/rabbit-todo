@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+gretty {
+    servletContainer = 'jetty9'
+}
+
+ext {
+    springVersion = '4.1.5.RELEASE'
+}
+
+
+repositories {
+    mavenCentral()
+
+}
+
+dependencies {
+
+    compile             "org.springframework:spring-core:$springVersion",
+                        "org.springframework:spring-context-support:$springVersion",
+                        "org.springframework:spring-webmvc:$springVersion",
+                        "org.springframework:spring-messaging:$springVersion",
+                        "org.springframework:spring-websocket:$springVersion",
+                        'org.springframework.data:spring-data-mongodb:1.6.2.RELEASE',
+
+                        'javax.servlet:javax.servlet-api:3.0.1',
+                        'javax.validation:validation-api:1.1.0.Final',
+
+                        'com.google.guava:guava:18.0',
+
+
+                        'com.fasterxml.jackson.core:jackson-core:2.5.1',
+                        'com.fasterxml.jackson.core:jackson-databind:2.5.1',
+
+                        'com.jayway.jsonpath:json-path:1.2.0',
+                        'com.jayway.jsonpath:json-path-assert:1.2.0',
+
+                        'org.apache.velocity:velocity:1.7'
+
+
+    testCompile         "org.springframework:spring-test:$springVersion"
+    testCompile         'org.hamcrest:hamcrest-all:1.3'
+    testCompile         'junit:junit:4.12'
+
+}
+
