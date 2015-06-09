@@ -1,6 +1,8 @@
 # rabbit-todo
-A simple collaborative real time application with Angular and Spring MVC. The purpose of this application is to showcase the integration between Angular / Spring MVC using MongoDB as backing store and websockets for the interactivity.
 
+LIVE DEMO: [http://rabbit-todo.cfapps.io](http://rabbit-todo.cfapps.io)
+
+A simple collaborative real time application with Angular and Spring MVC. The purpose of this application is to showcase the integration between Angular / Spring MVC using MongoDB as backing store and websockets for the interactivity.
 
 ### Requirements
 
