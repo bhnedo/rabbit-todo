@@ -1,6 +1,6 @@
 # rabbit-todo
 
-SEE THE POST FOR DETAILS: [http://rabbitstack.github.io/spring-mvc-angular-hasta-la-vista-jsp/](http://rabbitstack.github.io/spring-mvc-angular-hasta-la-vista-jsp)
+SEE THE POST FOR DETAILS: [http://rabbitstack.github.io/angularjs/spring/mongodb/spring-mvc-angular-hasta-la-vista-jsp/](http://rabbitstack.github.io/angularjs/spring/mongodb/spring-mvc-angular-hasta-la-vista-jsp/)
 
 A simple collaborative real time application with Angular and Spring MVC. The purpose of this application is to showcase the integration between Angular / Spring MVC using MongoDB as backing store and websockets for the interactivity.
 
